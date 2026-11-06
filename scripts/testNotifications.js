@@ -6,10 +6,10 @@ async function testNotifications() {
   console.log('🧪 Iniciando pruebas de notificaciones Firebase...');
   
   // Token de prueba (reemplaza con un token real de tu app)
-  const testToken = 'COLOCA_AQUI_UN_TOKEN_FCM_REAL_DE_TU_APP';
+  const testToken = process.env.TEST_FCM_TOKEN || process.argv[2]; // token FCM de un dispositivo de prueba
   
-  if (testToken === 'COLOCA_AQUI_UN_TOKEN_FCM_REAL_DE_TU_APP') {
-    console.log('❌ Por favor, coloca un token FCM real en testToken');
+  if (!testToken) {
+    console.log('❌ Pasa un token FCM: npm run test:notifications -- <token>  (o define TEST_FCM_TOKEN en .env)');
     console.log('💡 Puedes obtener un token desde tu app Flutter ejecutando: print(FirebaseMessaging.instance.getToken())');
     return;
   }
